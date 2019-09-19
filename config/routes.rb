@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :workshop
+  resources :workshops
 
-  root 'workshop#index'
+  root 'workshops#index'
 end
