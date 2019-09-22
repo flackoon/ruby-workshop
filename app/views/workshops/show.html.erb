@@ -1,0 +1,13 @@
+<div class="text-left mt-3 mb-3">
+	<%= link_to 'All workshops', workshops_path, class: 'btn btn-primary' %>
+</div>
+ <div class="card">
+	<div class="card-body">
+		<h5 class="card-title">
+			<%= @workshop.title %>
+		</h5>
+		<p class="card-text">
+			On: <strong><%= @workshop.date %></strong>
+		</p>
+	</div>
+</div>

@@ -1,1 +1,33 @@
-<h1>Index</h1>
+<h2 class='text-monospace'>Workshops</h2>
+
+<div class="workshops-container mt-3">
+	<div class="row">
+		<% @workshops.each do |workshop| %>
+			<div class="col-6">
+				<div class="card card-primary">
+					<div class="card-body">
+						<h5 class="card-title">
+							<div class="d-flex justify-content-between">
+								<%= link_to workshop.title, workshop, class: 'text-decoration-none text-dark' %>
+								<div class="actions-container">
+									<%= link_to 'Edit', edit_workshop_path(workshop), class: 'btn badge badge-dark' %>
+									<%= link_to 'Delete', workshop_path(workshop), 
+											method: :delete, 
+											data: { confirm: 'Are you sure?' },
+											class: 'btn badge badge-danger' %>
+								</div>
+							</div>
+						</h5>
+						<p class="card-text">
+							<% if workshop.date.nil? %>
+								<small>No date provided</small>
+							<% else %>
+								On: <strong><%= workshop.date %></strong>
+							<% end %>
+						</p>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
