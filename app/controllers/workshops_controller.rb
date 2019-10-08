@@ -1,4 +1,6 @@
 class WorkshopsController < ApplicationController
+	before_action :load_workshop, :except => [:index, :new, :create]
+
 	def index 
 		@workshops = Workshop.all
 	end
@@ -8,12 +10,9 @@ class WorkshopsController < ApplicationController
 	end
 
 	def edit
-		@workshop = Workshop.find(params[:id])
 	end
 
 	def update
-		@workshop = Workshop.find(params[:id])
-
 		if @workshop.update(workshop_params)
 			redirect_to @workshop
 		else
@@ -32,11 +31,9 @@ class WorkshopsController < ApplicationController
 	end
 
 	def show 
-		@workshop = Workshop.find(params[:id])
 	end
 
 	def destroy
-		@workshop = Workshop.find(params[:id])
 		@workshop.destroy
 
 		redirect_to workshops_path
@@ -46,5 +43,9 @@ class WorkshopsController < ApplicationController
 	
 	def workshop_params 
 		params.require(:workshop).permit(:title, :date)
+	end
+
+	def load_workshop
+		@workshop = Workshop.find(params[:id])
 	end
 end
