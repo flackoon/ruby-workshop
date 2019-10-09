@@ -1,10 +1,14 @@
 <div class="navbar bg-white border-bottom box-shadow p-3 px-md-4 mb-3">
 	<div class="container d-flex flex-column flex-md-row align-items-center">
-		<h5 class="my-0 mr-md-auto font-weight-normal">
-			<%= link_to 'Workshop', root_url, class: 'text-dark' %>
-		</h5>
+		<div class='d-flex align-items-center'>
+			<h5 class="my-0 mr-md-auto font-weight-normal">
+				<%= link_to 'Workshop', root_url, class: 'text-dark' %>
+			</h5>
+			<%= link_to 'Add +', new_workshop_path, class: "btn btn-outline-primary ml-3" %>
+		</div>
+
 		<nav class="my-2 my-md-0 md-3">
-			<%= link_to 'Add +', new_workshop_path, class: "btn btn-outline-primary" %>
+			<%= render 'shared/authorization' %>
 		</nav>
 	</div>
 </div>

@@ -1,32 +1,25 @@
 <%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="card card-primary p-3">
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: 'form-control' %>
+      <div class='text-danger'><small><%= @user.errors[:email].map{ |error| error.capitalize }.join('</br>') %></small></div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: 'form-control' %>
+      <div class='text-danger'><small><%= @user.errors[:password].map{ |error| error.capitalize }.join('</br>') %></small></div>
+    </div>
+    <div class="form-group">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, class: 'form-control' %>
+      <div class='text-danger'><small><%= @user.errors[:password_confirmation].map{ |error| error.capitalize }.join('</br>') %></small></div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions text-right mt-3">
+    <%= form.submit class: 'btn btn-outline-primary' %>
   </div>
 <% end %>
+
+
+
