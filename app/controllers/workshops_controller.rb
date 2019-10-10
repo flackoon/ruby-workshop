@@ -1,5 +1,6 @@
 class WorkshopsController < ApplicationController
 	before_action :load_workshop, :except => [:index, :new, :create]
+  before_action :authorize, :except => [:index, :show]
 
 	def index 
 		@workshops = Workshop.all
@@ -34,9 +35,13 @@ class WorkshopsController < ApplicationController
 	end
 
 	def destroy
-		@workshop.destroy
-
-		redirect_to workshops_path
+		if current_user.nil?
+			redirect_to login_path
+		else
+			@workshop.destroy
+	
+			redirect_to workshops_path
+		end
 	end
 
 	private
