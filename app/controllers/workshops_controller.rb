@@ -4,6 +4,7 @@ class WorkshopsController < ApplicationController
 
 	def index 
 		@workshops = Workshop.all
+		WorkshopCleanerJob.perform_later
 	end
 
 	def new 
