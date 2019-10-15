@@ -1,6 +1,3 @@
-<div class="text-left mt-3 mb-3">
-	<%= link_to 'All workshops', workshops_path, class: 'btn btn-primary' %>
-</div>
  <div class="card">
 	<div class="card-body">
 		<h5 class="card-title">
@@ -9,5 +6,17 @@
 		<p class="card-text">
 			On: <strong><%= @workshop.date %></strong>
 		</p>
+		<div class='d-flex justify-content-between'>
+			<div>
+				Participants : <span class="badge badge-pill badge-primary"><%= @workshop.users.length %></span>
+			</div>
+			<% if current_user %>			
+				<% if @workshop.users.exists?(current_user.id) %>
+					<%= link_to "- I lost interest", "/workshops/#{@workshop.id}/participations"  %>
+				<% else %>
+					<%= link_to "+ I'm interested", "/workshops/#{@workshop.id}/participations"  %>
+				<% end %>	
+			<% end %>				
+		</div>
 	</div>
 </div>
