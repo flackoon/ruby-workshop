@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :workshops do
     resources :participations
   end
+  resources :account, only: [:index, :register]
   
-  get 'register', to: 'users#new', as: 'register'
-  get 'login', to: 'sessions#new', as: 'login'
+  get '/account/login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 end

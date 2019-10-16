@@ -1,5 +1,5 @@
 <% if current_user %>
-	<a href=<%= user_path(current_user) %> class='btn btn-outline-primary account-link'>
+	<a href=<%= account_index_path %> class='btn btn-outline-primary account-link'>
 		<i class="far fa-user"></i>
 	</a>
 	<%= link_to 'Log Out', logout_path, class: 'btn btn-outline-secondary' %>
