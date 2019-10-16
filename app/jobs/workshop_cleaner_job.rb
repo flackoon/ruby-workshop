@@ -2,7 +2,7 @@ class WorkshopCleanerJob < ApplicationJob
   queue_as :default
 
   after_perform do |job|
-    self.class.set(:wait => 10.minutes).perform_later
+    self.class.set(:wait => 12.hours).perform_later
   end
 
   def perform(*args)
