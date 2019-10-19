@@ -1,6 +1,8 @@
 <div class="row">
 	<div class="col-sm-4 offset-sm-4 col-12">
-	<h3>Register</h3>
-		<%= render 'form', user: @user %>
+		<p class='text-danger'><%= alert %></p>
+		
+		<h3>Register</h3>
+		<%= render 'form', form_url: create_account_url , account: @account, submit_text: 'Register' %>
 	</div>
 </div>
