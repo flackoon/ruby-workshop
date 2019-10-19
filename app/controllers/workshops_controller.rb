@@ -24,6 +24,7 @@ class WorkshopsController < ApplicationController
 
 	def create 
 		@workshop = Workshop.new(workshop_params)
+		@workshop.user_id = session[:user_id]
 
 		if @workshop.save
 			redirect_to @workshop
