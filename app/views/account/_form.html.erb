@@ -5,17 +5,19 @@
       <%= form.email_field :email, class: 'form-control' %>
       <div class='text-danger'><small><%= @account.errors[:email].map{ |error| error.capitalize }.join('</br>') %></small></div>
     </div>
-    <div class="form-group">
-      <%= form.label :password %>
-      <%= form.password_field :password, class: 'form-control' %>
-      <div class='text-danger'><small><%= @account.errors[:password].map{ |error| error.capitalize }.join('</br>') %></small></div>
+    <% if url_for == register_path %>
+      <div class="form-group">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: 'form-control' %>
+        <div class='text-danger'><small><%= @account.errors[:password].map{ |error| error.capitalize }.join('</br>') %></small></div>
+      </div>
+      <div class="form-group">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, class: 'form-control' %>
+        <div class='text-danger'><small><%= @account.errors[:password_confirmation].map{ |error| error.capitalize }.join('</br>') %></small></div>
+      </div>
     </div>
-    <div class="form-group">
-      <%= form.label :password_confirmation %>
-      <%= form.password_field :password_confirmation, class: 'form-control' %>
-      <div class='text-danger'><small><%= @account.errors[:password_confirmation].map{ |error| error.capitalize }.join('</br>') %></small></div>
-    </div>
-  </div>
+  <% end%>
   <div class="actions text-right mt-3">
     <%= form.submit submit_text, class: 'btn btn-outline-primary' %>
   </div>

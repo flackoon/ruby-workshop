@@ -29,12 +29,12 @@ class AccountController < ApplicationController
     end
   end
 
-  # PATCH/PUT /account/1
+  # PATCH/PUT /account
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @account }
+        format.html { redirect_to account_index_url, notice: 'User was successfully updated.' }
+        format.json { render :index, status: :ok, location: @account }
       else
         format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }

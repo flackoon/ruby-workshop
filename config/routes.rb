@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :account, only: [:index]
   
   get '/account/edit', to: 'account#edit', as: 'edit_account'
+  patch '/account/edit', to: 'account#update', as: 'update_account'
   get '/account/register', to: 'account#register', as: 'register'
   post '/account/register', to: 'account#create', as: 'create_account'
   get '/account/login', to: 'sessions#new', as: 'login'
