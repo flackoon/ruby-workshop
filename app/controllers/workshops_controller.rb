@@ -12,6 +12,9 @@ class WorkshopsController < ApplicationController
 	end
 
 	def edit
+		if @workshop.user_id != current_user.id
+			return redirect_to root_url
+		end
 	end
 
 	def update
@@ -39,6 +42,8 @@ class WorkshopsController < ApplicationController
 	def destroy
 		if current_user.nil?
 			redirect_to login_path
+		elsif @workshop.user_id != current_user.id
+			return redirect_to root_url
 		else
 			@workshop.destroy
 	
