@@ -1,12 +1,17 @@
 <div class="account-index-container">
-	<div class="text-right mt-4">
-		<h2 class='mb-0'>
-			<a href=<%= edit_account_path %> class='btn btn-outline-primary edit-account-btn rounded-circle'>
-				<i class="fas fa-pen"></i>
-			</a>
-			My profile
-		</h2>
-		<div class="text-muted"><%= @account.email %></div>
+	<div class="d-flex justify-content-end align-items-top mt-5">
+		<div class="text-right  mr-3">
+			<h2 class='mb-0'>
+				<a href=<%= edit_account_path %> class='btn btn-outline-primary edit-account-btn rounded-circle'>
+					<i class="fas fa-pen"></i>
+				</a>
+				My profile
+			</h2>
+			<div class="text-muted"><%= @account.email %></div>
+		</div>
+		<div class="profile-picture">
+			<%= image_tag !@account.picture.nil? ? @account.picture : 'avatar.png', alt: 'Profile picture' %>
+		</div>
 	</div>
 
 	<div class="mt-3">

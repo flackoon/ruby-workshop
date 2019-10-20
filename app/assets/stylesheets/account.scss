@@ -1,3 +1,5 @@
+@import 'variables';
+
 .account-index-container {
 	h2 {
 		&:hover {
@@ -13,5 +15,14 @@
 		opacity: 0;
 		width: 38px;
 		padding: 6px;
+	}
+
+	.profile-picture {
+		img {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			box-shadow: $light-shadow;
+		}
 	}
 }
