@@ -2,7 +2,31 @@
 	<div class="col-6 offset-3">
 		<p class='text-danger'><%= alert %></p>
 		<h1>Editing account details</h1>
+		<hr class='mb-4'>
 
-		<%= render 'form', form_url: edit_account_url , account: @account, submit_text: 'Save' %>
+		<%= form_with url: edit_account_url, model: @account, local: true, class: 'edit-profile-form' do |form| %>
+			<div class="card card-primary p-3">
+				<div class="form-group">
+					<div class="picture-upload">
+						<div class="image-holder">
+							<%= image_tag !@account.picture.empty? ? @account.picture : 'avatar.png', alt: 'Profile picture', class: 'picture-preview' %>
+						</div>
+						<div class="open-file-upload">
+							<i class="far fa-image"></i>
+							CHANGE
+						</div>
+						<%= form.file_field :picture, accept: 'image/png,image/jpeg', class: 'picture-input' %>
+					</div>
+				</div>
+				<div class="form-group">
+					<%= form.label :email %>
+					<%= form.email_field :email, class: 'form-control' %>
+					<div class='text-danger'><small><%= @account.errors[:email].map{ |error| error.capitalize }.join('</br>') %></small></div>
+				</div>
+			</div>
+			<div class="actions text-right mt-3">
+				<%= form.submit 'Save', class: 'btn btn-outline-primary' %>
+			</div>
+		<% end %>
 	</div>
 </div>
