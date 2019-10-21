@@ -1,3 +1,45 @@
-// Place all the styles related to the Workshop controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+.workshop-participants {
+	display: flex;
+	align-items: center;
+
+	.heading {
+		font-weight: 600;
+		font-size: 1.4rem;
+	}
+
+	.participants-container {
+		display: flex;
+		margin-left: 15px;
+
+		.participant {
+			margin-left: -15px;
+			position: relative;
+			&:first-of-type {
+				margin-left: 0px;
+			}
+
+			img {
+				border: 1px solid $gray-500;
+				width: 35px;
+				height: 35px;
+				border-radius: 50%;
+				box-shadow: $medium-shadow;
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
+		.participant-0 {
+			z-index: 53;
+		}
+		.participant-1 {
+			z-index: 52;
+		}
+		.participant-2 {
+			z-index: 51;
+		}
+	}
+}
