@@ -10,7 +10,7 @@
 			<div class="text-muted"><%= @account.email %></div>
 		</div>
 		<div class="profile-picture">
-			<%= image_tag !@account.picture.empty? ? @account.picture : 'avatar.png', alt: 'Profile picture' %>
+			<%= image_tag !@account.picture.nil? && !@account.picture.empty? ? @account.picture : 'avatar.png', alt: 'Profile picture' %>
 		</div>
 	</div>
 

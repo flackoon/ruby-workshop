@@ -15,5 +15,7 @@
     </div>
   </body>
   <%= javascript_include_tag 'application', 'data-turbolinks-suppress-warning': 'reload', 'data-turbolinks-eval': 'false'  %>
-  <%= javascript_include_tag controller_name %>
+  <% if File.file?("#{Rails.root}/app/assets/javascripts/#{controller_name}.js") %>
+    <%= javascript_include_tag controller_name %>
+  <% end %>
 </html>
