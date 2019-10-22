@@ -9,7 +9,7 @@
 				<div class="form-group">
 					<div class="picture-upload">
 						<div class="image-holder">
-							<%= image_tag !@account.picture.empty? ? @account.picture : 'avatar.png', alt: 'Profile picture', class: 'picture-preview' %>
+							<%= image_tag !@account.picture.nil? && !@account.picture.empty? ? @account.picture : 'avatar.png', alt: 'Profile picture', class: 'picture-preview' %>
 						</div>
 						<div class="open-file-upload">
 							<i class="far fa-image"></i>
