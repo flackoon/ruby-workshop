@@ -6,17 +6,17 @@
 		<p class="card-text">
 			On: <strong><%= @workshop.date %></strong>
 		</p>
-		<div class='d-flex justify-content-between'>
-			<div class='workshop-participants'>
-				<span class='heading'>Participants : </span>
+		<div class="d-flex justify-content-between">
+			<div class="workshop-participants">
+				<span class="heading">Participants : </span>
 				<% if @workshop.users.empty? %>
-					<span class='ml-2 text-muted'>No one is intereted yet</span>
+					<span class="ml-2 text-muted">No one is intereted yet</span>
 				<% else %>
 					<div class="participants-container">
 						<%  @workshop.users.first(3).each_with_index do |user, index| %>
 							<div class="<%= "participant participant-#{index}"%>" >
-								<%= image_tag !user.picture.nil? && !user.picture.empty? ? user.picture : 'avatar.png', alt: 'Profile picture', 
-															'data-toggle': "tooltip",  'data-placement': "bottom", 'title': user.email %>
+								<%= image_tag !user.picture.nil? && !user.picture.empty? ? user.picture : "avatar.png", alt: "Profile picture", 
+															"data-toggle": "tooltip",  "data-placement": "bottom", "title": user.email %>
 							</div>
 						<% end%>
 					</div>
@@ -37,11 +37,15 @@
 <div class="comments">
 	<h3>Comments</h3>
 	<hr>
+	<div class="comment-input-holder">
+		<textarea name="comment" class="form-control comment-input" value="" placeholder="<%= !@workshop.comments.empty? ? "Say something.." : "Be the first to comment" %>" ></textarea>
+		<div class="btn btn-outline-primary submit-comment-btn">Comment</div>
+	</div>
 	<% if !@workshop.comments.empty? %>
 		<% @workshop.comments.each do |comment| %>
 			<div class="toast show comment">
 				<div class="toast-header">
-					<%= image_tag !comment.user.picture.nil? && !comment.user.picture.empty? ? comment.user.picture : 'avatar.png', alt: 'Profile picture', class: 'rounded comment-avatar' %>
+					<%= image_tag !comment.user.picture.nil? && !comment.user.picture.empty? ? comment.user.picture : "avatar.png", alt: "Profile picture", class: "rounded comment-avatar" %>
 					<strong class="mr-auto">
 						<%= comment.user.email %>
 					</strong>
@@ -52,7 +56,5 @@
 				</div>
 			</div>
 		<% end %>
-	<% else %>
-		<%= 'Be the first to comment.' %>
 	<% end %>
 </div>

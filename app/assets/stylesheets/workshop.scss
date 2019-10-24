@@ -57,4 +57,25 @@
 			margin-right: 5px;
 		}
 	}
+
+	.comment-input-holder {
+		margin-bottom: 20px;
+		position: relative;
+
+		.comment-input {
+			height: 100px;
+			resize: none;
+			padding: 15px 120px 15px 15px;
+		}
+
+		.submit-comment-btn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			height: calc(100% - 30px);
+			display: flex;
+			align-items: center;
+			right: 15px;
+		}
+	}
 }
