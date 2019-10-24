@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'workshops#index'
   
+  resources :account, only: [:index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :workshops do
     resources :participations
   end
-  resources :account, only: [:index]
+  resources :comments, only: [:create]
   
   get '/account/edit', to: 'account#edit', as: 'edit_account'
   patch '/account/edit', to: 'account#update', as: 'update_account'
