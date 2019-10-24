@@ -18,7 +18,14 @@ class CommentsController < ApplicationController
 			workshop.comments.append(comment)
 
 			if workshop.save
-				render :json => { :result => comment }
+				render :json => { 
+					:id => comment.id,
+					:content => comment.content,
+					:created_at => comment.created_at,
+					:user_id => comment.user.id,
+					:user_avatar => comment.user.picture,
+					:user_email => comment.user.email
+				}
 			else
 				render :json => { :result => false }
 			end

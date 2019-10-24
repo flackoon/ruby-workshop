@@ -1,60 +1,64 @@
- <div class="card" data-workshop-id="<%= @workshop.id %>">
-	<div class="card-body">
-		<h5 class="card-title">
-			<%= @workshop.title %>
-		</h5>
-		<p class="card-text">
-			On: <strong><%= @workshop.date %></strong>
-		</p>
-		<div class="d-flex justify-content-between">
-			<div class="workshop-participants">
-				<span class="heading">Participants : </span>
-				<% if @workshop.users.empty? %>
-					<span class="ml-2 text-muted">No one is intereted yet</span>
-				<% else %>
-					<div class="participants-container">
-						<%  @workshop.users.first(3).each_with_index do |user, index| %>
-							<div class="<%= "participant participant-#{index}"%>" >
-								<%= image_tag !user.picture.nil? && !user.picture.empty? ? user.picture : "avatar.png", alt: "Profile picture", 
-															"data-toggle": "tooltip",  "data-placement": "bottom", "title": user.email %>
-							</div>
-						<% end%>
-					</div>
-				<% end %>
-				
+<div class="workshop-details-page">
+	<div class="card" data-workshop-id="<%= @workshop.id %>">
+		<div class="card-body">
+			<h5 class="card-title">
+				<%= @workshop.title %>
+			</h5>
+			<p class="card-text">
+				On: <strong><%= @workshop.date %></strong>
+			</p>
+			<div class="d-flex justify-content-between">
+				<div class="workshop-participants">
+					<span class="heading">Participants : </span>
+					<% if @workshop.users.empty? %>
+						<span class="ml-2 text-muted">No one is intereted yet</span>
+					<% else %>
+						<div class="participants-container">
+							<%  @workshop.users.first(3).each_with_index do |user, index| %>
+								<div class="<%= "participant participant-#{index}"%>" >
+									<%= image_tag !user.picture.nil? && !user.picture.empty? ? user.picture : "avatar.png", alt: "Profile picture", 
+																"data-toggle": "tooltip",  "data-placement": "bottom", "title": user.email %>
+								</div>
+							<% end%>
+						</div>
+					<% end %>
+					
+				</div>
+				<% if current_user %>			
+					<% if @workshop.users.exists?(current_user.id) %>
+						<%= link_to "- I lost interest", "/workshops/#{@workshop.id}/participations"  %>
+					<% else %>
+						<%= link_to "+ I'm interested", "/workshops/#{@workshop.id}/participations"  %>
+					<% end %>	
+				<% end %>				
 			</div>
-			<% if current_user %>			
-				<% if @workshop.users.exists?(current_user.id) %>
-					<%= link_to "- I lost interest", "/workshops/#{@workshop.id}/participations"  %>
-				<% else %>
-					<%= link_to "+ I'm interested", "/workshops/#{@workshop.id}/participations"  %>
-				<% end %>	
-			<% end %>				
 		</div>
 	</div>
-</div>
 
-<div class="comments">
-	<h3>Comments</h3>
-	<hr>
-	<div class="comment-input-holder">
-		<textarea name="comment" class="form-control comment-input" value="" placeholder="<%= !@workshop.comments.empty? ? "Say something.." : "Be the first to comment" %>" ></textarea>
-		<div class="btn btn-outline-primary submit-comment-btn">Comment</div>
-	</div>
-	<% if !@workshop.comments.empty? %>
-		<% @workshop.comments.each do |comment| %>
-			<div class="toast show comment">
-				<div class="toast-header">
-					<%= image_tag !comment.user.picture.nil? && !comment.user.picture.empty? ? comment.user.picture : "avatar.png", alt: "Profile picture", class: "rounded comment-avatar" %>
-					<strong class="mr-auto">
-						<%= comment.user.email %>
-					</strong>
-					<small><%= comment.created_at %></small>
-				</div>
-				<div class="toast-body">
-					<%= comment.content %>
-				</div>
+	<div class="comments">
+		<h3>Comments</h3>
+		<hr>
+		<% if current_user %>			
+			<div class="comment-input-holder">
+				<textarea name="comment" class="form-control comment-input" value="" placeholder="<%= !@workshop.comments.empty? ? "Say something.." : "Be the first to comment" %>" ></textarea>
+				<div class="btn btn-outline-primary submit-comment-btn">Comment</div>
 			</div>
+		<% end%>
+		<% if !@workshop.comments.empty? %>
+			<% @workshop.comments.order(created_at: :desc).each do |comment| %>
+				<div class="toast show comment">
+					<div class="toast-header">
+						<%= image_tag !comment.user.picture.nil? && !comment.user.picture.empty? ? comment.user.picture : "avatar.png", alt: "Profile picture", class: "rounded comment-avatar" %>
+						<strong class="mr-auto">
+							<%= comment.user.email %>
+						</strong>
+						<small><%= comment.created_at %></small>
+					</div>
+					<div class="toast-body">
+						<%= comment.content %>
+					</div>
+				</div>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 </div>
