@@ -50,7 +50,7 @@
 					<div class="toast-header">
 						<%= image_tag !comment.user.picture.nil? && !comment.user.picture.empty? ? comment.user.picture : "avatar.png", alt: "Profile picture", class: "rounded comment-avatar" %>
 						<strong class="mr-auto">
-							<%= comment.user.email %>
+							<%= link_to comment.user.email, account_url(comment.user)  %>
 						</strong>
 						<small><%= comment.created_at %></small>
 					</div>

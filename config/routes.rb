@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :comments, only: [:create]
   
+  get '/account/details/:id', to: 'account#show',  as: 'account'
   get '/account/edit', to: 'account#edit', as: 'edit_account'
   patch '/account/edit', to: 'account#update', as: 'update_account'
   get '/account/register', to: 'account#register', as: 'register'

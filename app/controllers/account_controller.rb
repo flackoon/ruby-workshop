@@ -4,6 +4,16 @@ class AccountController < ApplicationController
   def index
   end
 
+  def show
+    if session[:user_id].nil?
+      return redirect_to login_url
+    elsif params[:id] == session[:user_id].to_s
+      return redirect_to account_index_url
+    end
+
+    @account = User.find(params[:id])
+  end
+
   # GET /account/register
   def register
     @account = User.new
