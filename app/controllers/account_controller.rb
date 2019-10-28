@@ -31,13 +31,15 @@ class AccountController < ApplicationController
 
   # PATCH/PUT /account
   def update
-    puts params[:user][:picture].inspect
-    name = params[:user][:picture].original_filename
-    profile_picture_path = File.join('app', 'assets', 'images', 'avatars', name)
-
     update_params = account_params
-    update_params[:picture] = File.join('avatars', name)
-    File.open(profile_picture_path, 'wb') { |f| f.write(params[:user][:picture].read) }
+
+    if !params[:user][:picture].nil?
+      name = params[:user][:picture].original_filename
+      profile_picture_path = File.join('app', 'assets', 'images', 'avatars', name)
+  
+      update_params[:picture] = File.join('avatars', name)
+      File.open(profile_picture_path, 'wb') { |f| f.write(params[:user][:picture].read) }
+    end
 
     respond_to do |format|
       if @account.update(update_params)
