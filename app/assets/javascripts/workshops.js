@@ -62,5 +62,12 @@ $(document).ready(function () {
 
 			commentInput.querySelector('textarea').value = '';
 		}
+
+		$(document).on('click', '.account-avatar-link', ev => {
+			ev.preventDefault();
+			ev.stopPropagation();
+			$(ev.target).blur();
+			window.location = $(ev.target).closest('.account-avatar-link').attr('href');
+		});
 	}
 });
