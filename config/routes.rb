@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'workshops#index'
   
   resources :account, only: [:index]
