@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_195818) do
+ActiveRecord::Schema.define(version: 2019_10_29_201116) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2019_10_29_195818) do
     t.integer "comment_id", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
   create_table "users_workshops", id: false, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "workshop_id", null: false
@@ -41,7 +50,9 @@ ActiveRecord::Schema.define(version: 2019_10_29_195818) do
     t.string "title"
     t.text "description"
     t.integer "category_id"
+    t.integer "user_id"
     t.index ["category_id"], name: "index_workshops_on_category_id"
+    t.index ["user_id"], name: "index_workshops_on_user_id"
   end
 
 end
