@@ -36,6 +36,9 @@ gem 'bcrypt', '~> 3.1.7'
 # jQuery unfortunately
 gem 'jquery-rails'
 
+# devise authentication
+gem 'devise'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
