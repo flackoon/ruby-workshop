@@ -1,7 +1,10 @@
 class AccountController < ApplicationController
   before_action :set_account, only: [:index, :edit, :update, :destroy]
 
-  def index
+	def index
+		if !user_signed_in?
+			return redirect_to new_user_session_path
+		end
   end
 
   def show
@@ -64,7 +67,7 @@ class AccountController < ApplicationController
 
   private
     def set_account
-      @account = User.find(session[:user_id])
+			@account = current_user
     end
 
     def account_params

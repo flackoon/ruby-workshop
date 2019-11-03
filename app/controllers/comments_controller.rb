@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 		workshop = Workshop.find(params[:workshop_id])
 		comment = Comment.new({ 
 			:content => params[:content], 
-			:user_id => session[:user_id],
+			:user_id => current_user.id,
 		})
 		
 		if comment.save

@@ -40,7 +40,7 @@ $(document).ready(function () {
 
 			let picture = document.createElement('img');
 			['rounded', 'comment-avatar'].forEach(className => picture.classList.add(className));
-			picture.setAttribute('src', `/assets/${comment.user_avatar}`);
+			picture.setAttribute('src', `/assets/${comment.user_avatar || 'avatar.png'}`);
 			picture.setAttribute('alt', 'Profile picture');
 
 			let email = document.createElement('strong');
