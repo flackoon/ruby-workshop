@@ -16,3 +16,9 @@
 // = require jquery
 // = require popper
 // = require bootstrap
+
+$(document).ready(() => {
+	$(document).on('click', '.logout-btn', () => {
+		window.location.reload();
+	})
+})

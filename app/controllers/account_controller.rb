@@ -9,7 +9,7 @@ class AccountController < ApplicationController
 
   def show
     if session[:user_id].nil?
-      return redirect_to login_url
+      return redirect_to new_user_session_path
     elsif params[:id] == session[:user_id].to_s
       return redirect_to account_index_url
     end
